@@ -19,9 +19,9 @@ const Hero = () => {
           </p>
           
           <h1 className="text-hero text-white mb-12 flex flex-col items-center">
-            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mb-4">the</span>
+            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mb-6">the</span>
             <span className="font-caslon font-normal italic text-white">Polissi</span>
-            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mt-4">laboratory</span>
+            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mt-6">laboratory</span>
           </h1>
           
           <p className="text-display text-white max-w-3xl mx-auto mb-16">
