@@ -18,12 +18,10 @@ const Hero = () => {
             Science is a statement of discovery.
           </p>
           
-          <h1 className="text-hero text-foreground mb-12">
-            the
-            <br />
-            <span className="font-serif font-normal text-accent">Polissi</span>
-            <br />
-            laboratory
+          <h1 className="text-hero text-foreground mb-12 flex flex-col items-center">
+            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mb-2">the</span>
+            <span className="font-serif font-normal italic text-accent">Polissi</span>
+            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mt-2">laboratory</span>
           </h1>
           
           <p className="text-display text-muted-foreground max-w-3xl mx-auto mb-16">

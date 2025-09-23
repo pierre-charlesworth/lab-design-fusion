@@ -7,11 +7,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Lab Info */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">
-              The <span className="font-serif">Polissi</span> Lab
+            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+              <span className="text-sm font-light tracking-[0.15em] uppercase">THE</span>
+              <span className="font-serif italic">Polissi</span>
+              <span className="text-sm font-light tracking-[0.15em] uppercase">LAB</span>
             </h3>
-            <p className="text-muted-foreground mb-4">
-              Advancing molecular science through innovative research and collaboration at The <span className="font-serif">Polissi</span> Lab.
+            <p className="text-muted-foreground mb-4 flex flex-wrap items-center gap-1">
+              Advancing molecular science through innovative research and collaboration at 
+              <span className="text-sm font-light tracking-[0.1em] uppercase">THE</span>
+              <span className="font-serif italic">Polissi</span>
+              <span className="text-sm font-light tracking-[0.1em] uppercase">LAB.</span>
             </p>
             <div className="flex space-x-4">
               <a 
@@ -63,8 +68,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center">
-          <p className="text-muted-foreground">
-            © {currentYear} The Polissi Lab. All rights reserved.
+          <p className="text-muted-foreground flex items-center justify-center gap-2">
+            <span className="text-sm tracking-[0.1em] uppercase">© {currentYear} THE</span>
+            <span className="font-serif italic">Polissi</span>
+            <span className="text-sm tracking-[0.1em] uppercase">LAB. ALL RIGHTS RESERVED.</span>
           </p>
         </div>
       </div>
