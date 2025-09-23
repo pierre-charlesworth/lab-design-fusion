@@ -19,9 +19,9 @@ const Hero = () => {
           </p>
           
           <h1 className="text-hero text-foreground mb-12">
-            molecular
+            the
             <br />
-            <span className="text-accent">research</span>
+            <span className="font-serif font-normal text-accent">Polissi</span>
             <br />
             laboratory
           </h1>

@@ -16,8 +16,8 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Lab Name */}
-          <div className="text-lg font-light text-foreground tracking-wider uppercase">
-            molecular lab
+          <div className="text-lg font-light text-foreground tracking-wider">
+            THE <span className="font-serif font-normal">Polissi</span> LAB
           </div>
 
           {/* Desktop Navigation */}

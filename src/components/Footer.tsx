@@ -8,10 +8,10 @@ const Footer = () => {
           {/* Lab Info */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4">
-              Molecular Research Lab
+              The <span className="font-serif">Polissi</span> Lab
             </h3>
             <p className="text-muted-foreground mb-4">
-              Advancing molecular science through innovative research and collaboration.
+              Advancing molecular science through innovative research and collaboration at The <span className="font-serif">Polissi</span> Lab.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -64,7 +64,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground">
-            © {currentYear} Molecular Research Lab. All rights reserved.
+            © {currentYear} The Polissi Lab. All rights reserved.
           </p>
         </div>
       </div>
