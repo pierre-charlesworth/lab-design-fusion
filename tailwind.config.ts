@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         'display': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         'serif': ['Playfair Display', 'Georgia', 'serif'],
+        'caslon': ['Libre Caslon Text', 'serif'],
         'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {

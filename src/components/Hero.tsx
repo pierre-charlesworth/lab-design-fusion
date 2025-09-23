@@ -20,7 +20,7 @@ const Hero = () => {
           
           <h1 className="text-hero text-foreground mb-12 flex flex-col items-center">
             <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mb-2">the</span>
-            <span className="font-serif font-normal italic text-accent">Polissi</span>
+            <span className="font-caslon font-normal italic text-accent">Polissi</span>
             <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mt-2">laboratory</span>
           </h1>
           
