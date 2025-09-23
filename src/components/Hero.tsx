@@ -12,23 +12,26 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <div className="animate-fade-in">
-          <p className="text-display text-muted-foreground mb-6 tracking-wider uppercase">
-            Pioneering molecular research
+          <p className="text-statement text-muted-foreground mb-8">
+            Science is a statement of discovery.
           </p>
           
-          <h1 className="text-hero text-foreground mb-8 leading-tight">
-            MOLECULAR
+          <h1 className="text-hero text-foreground mb-12">
+            molecular
             <br />
-            <span className="text-accent">RESEARCH</span>
+            <span className="text-accent">research</span>
             <br />
-            LAB
+            laboratory
           </h1>
           
-          <p className="text-display text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-            Advancing scientific understanding through innovative research in protein structures, 
-            membrane dynamics, and molecular mechanisms that drive biological processes.
+          <p className="text-display text-muted-foreground max-w-3xl mx-auto mb-16">
+            Advanced research group crafting
+            <br />
+            <span className="font-medium">breakthrough discoveries and</span>
+            <br />
+            <span className="font-medium">innovative solutions for molecular science.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

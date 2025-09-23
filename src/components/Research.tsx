@@ -27,9 +27,10 @@ const Research = () => {
   return (
     <section id="research" className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-section text-foreground mb-6">
-            Our <span className="text-accent">Research</span>
+        <div className="text-center mb-20 animate-fade-in">
+          <p className="text-caption text-accent mb-4">selected works</p>
+          <h2 className="text-section text-foreground mb-8">
+            research <span className="text-accent">areas</span>
           </h2>
           <p className="text-display text-muted-foreground max-w-3xl mx-auto">
             We focus on fundamental questions in molecular biology, combining cutting-edge 

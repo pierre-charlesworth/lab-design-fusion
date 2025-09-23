@@ -27,9 +27,10 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 px-4 bg-secondary/20">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-section text-foreground mb-6">
-            Contact <span className="text-accent">Us</span>
+        <div className="text-center mb-20 animate-fade-in">
+          <p className="text-caption text-accent mb-4">get in touch</p>
+          <h2 className="text-section text-foreground mb-8">
+            contact <span className="text-accent">information</span>
           </h2>
           <p className="text-display text-muted-foreground max-w-2xl mx-auto">
             Ready to collaborate or have questions about our research? 
