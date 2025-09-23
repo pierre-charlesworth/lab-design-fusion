@@ -81,7 +81,6 @@ All colors MUST be HSL for maximum design flexibility.
     line-height: 0.85;
     letter-spacing: -0.04em;
     text-shadow: var(--text-shadow);
-    text-transform: uppercase;
   }
 
   .text-statement {
