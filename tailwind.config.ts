@@ -14,10 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        'display': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        'display': ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
         'serif': ['Playfair Display', 'Georgia', 'serif'],
         'caslon': ['Libre Caslon Text', 'serif'],
-        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        'sans': ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
