@@ -28,9 +28,9 @@ const Research = () => {
     <section id="research" className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-20 animate-fade-in">
-          <p className="text-caption text-accent mb-4">selected works</p>
+          <p className="text-caption text-muted-foreground mb-4">selected works</p>
           <h2 className="text-section text-foreground mb-8">
-            research <span className="text-accent">areas</span>
+            research <span className="text-muted-foreground">areas</span>
           </h2>
           <p className="text-display text-muted-foreground max-w-3xl mx-auto">
             We focus on fundamental questions in molecular biology, combining cutting-edge 
@@ -87,7 +87,7 @@ const Research = () => {
           </p>
           <a 
             href="#contact"
-            className="inline-flex items-center px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg smooth-transition hover:shadow-accent-glow hover:scale-105"
+            className="btn-primary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
           >
             Get In Touch
           </a>

@@ -37,13 +37,13 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a 
               href="#research"
-              className="inline-flex items-center px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-lg smooth-transition hover:shadow-accent-glow hover:scale-105"
+              className="btn-primary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
             >
               Explore Research
             </a>
             <a 
               href="#publications"
-              className="inline-flex items-center px-8 py-3 border border-accent text-accent font-semibold rounded-lg smooth-transition hover:bg-accent hover:text-accent-foreground"
+              className="btn-secondary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
             >
               View Publications
             </a>
@@ -54,7 +54,7 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <svg 
-          className="w-6 h-6 text-accent"
+          className="w-6 h-6 text-muted-foreground"
           fill="none" 
           strokeLinecap="round" 
           strokeLinejoin="round" 

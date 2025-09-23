@@ -2,53 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Lab website design system inspired by Paisana Studio
+/* Lab website design system - Monochromatic sophistication
 All colors MUST be HSL for maximum design flexibility.
 */
 
 @layer base {
   :root {
-    /* Dark sophisticated background inspired by Paisana */
-    --background: 220 13% 8%;
-    --foreground: 0 0% 98%;
+    /* Monochromatic dark sophisticated background */
+    --background: 220 13% 6%;
+    --foreground: 0 0% 96%;
 
     /* Card and surface colors */
-    --card: 220 13% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 13% 10%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 220 13% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 13% 8%;
+    --popover-foreground: 0 0% 96%;
 
-    /* Warm accent system */
-    --primary: 25 95% 53%;
+    /* Monochromatic accent system - subtle warm gray */
+    --primary: 0 0% 92%;
     --primary-foreground: 220 13% 8%;
 
-    --secondary: 220 13% 18%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 13% 15%;
+    --secondary-foreground: 0 0% 90%;
 
     /* Muted tones for subtle elements */
-    --muted: 220 13% 15%;
-    --muted-foreground: 220 9% 65%;
+    --muted: 220 13% 12%;
+    --muted-foreground: 220 9% 60%;
 
-    /* Accent colors for highlights */
-    --accent: 25 95% 53%;
+    /* Subtle accent - barely warm gray */
+    --accent: 30 8% 88%;
     --accent-foreground: 220 13% 8%;
 
     /* Status colors */
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
     /* Interactive elements */
-    --border: 220 13% 20%;
-    --input: 220 13% 15%;
-    --ring: 25 95% 53%;
+    --border: 220 13% 18%;
+    --input: 220 13% 12%;
+    --ring: 0 0% 80%;
 
     --radius: 0.5rem;
 
-    /* Lab-specific design tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(220 13% 8%), hsl(220 13% 4%));
-    --accent-glow: 0 0 40px hsl(25 95% 53% / 0.3);
-    --text-shadow: 0 2px 4px hsl(220 13% 4% / 0.8);
+    /* Lab-specific design tokens - monochromatic */
+    --hero-gradient: linear-gradient(135deg, hsl(220 13% 6%), hsl(220 13% 3%));
+    --accent-glow: 0 0 40px hsl(0 0% 80% / 0.15);
+    --text-shadow: 0 2px 8px hsl(220 13% 2% / 0.9);
     --smooth-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Typography scale matching Paisana's sophisticated approach */
@@ -118,27 +118,18 @@ All colors MUST be HSL for maximum design flexibility.
     text-transform: uppercase;
   }
 
-  /* Paisana-inspired effects */
-  .hero-gradient {
-    background: var(--hero-gradient);
-  }
-
-  .accent-glow {
-    box-shadow: var(--accent-glow);
-  }
-
+  /* Hover animations - monochromatic */
   .smooth-transition {
     transition: var(--smooth-transition);
   }
 
-  /* Hover animations */
   .nav-link {
     @apply smooth-transition relative;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent smooth-transition;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-foreground smooth-transition;
   }
 
   .nav-link:hover::after {
@@ -146,6 +137,15 @@ All colors MUST be HSL for maximum design flexibility.
   }
 
   .research-card {
-    @apply smooth-transition hover:scale-105 hover:shadow-2xl;
+    @apply smooth-transition hover:scale-105 hover:bg-muted/50;
+  }
+
+  /* Monochromatic button styles */
+  .btn-primary {
+    @apply bg-foreground text-background hover:bg-muted-foreground smooth-transition;
+  }
+
+  .btn-secondary {
+    @apply border border-foreground text-foreground hover:bg-foreground hover:text-background smooth-transition;
   }
 }
