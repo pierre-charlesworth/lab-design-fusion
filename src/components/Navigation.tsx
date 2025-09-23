@@ -18,7 +18,7 @@ const Navigation = () => {
           {/* Lab Name */}
           <div className="text-sm font-light text-foreground tracking-[0.2em] uppercase flex items-center gap-2">
             <span>THE</span>
-            <span className="font-caslon font-normal text-lg italic normal-case tracking-normal">Polissi</span>
+            <span className="font-caslon font-normal text-2xl italic normal-case tracking-normal">Polissi</span>
             <span>LAB</span>
           </div>
 
