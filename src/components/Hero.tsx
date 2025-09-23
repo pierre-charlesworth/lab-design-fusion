@@ -14,17 +14,17 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <div className="animate-fade-in">
-          <p className="text-statement text-muted-foreground mb-8">
+          <p className="text-statement text-white mb-8">
             Science is a statement of discovery.
           </p>
           
-          <h1 className="text-hero text-foreground mb-12 flex flex-col items-center">
+          <h1 className="text-hero text-white mb-12 flex flex-col items-center">
             <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mb-2">the</span>
-            <span className="font-caslon font-normal italic text-accent">Polissi</span>
+            <span className="font-caslon font-normal italic text-white">Polissi</span>
             <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-light tracking-[0.3em] uppercase mt-2">laboratory</span>
           </h1>
           
-          <p className="text-display text-muted-foreground max-w-3xl mx-auto mb-16">
+          <p className="text-display text-white max-w-3xl mx-auto mb-16">
             Advanced research group crafting
             <br />
             <span className="font-medium">breakthrough discoveries and</span>
@@ -52,7 +52,7 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <svg 
-          className="w-6 h-6 text-muted-foreground"
+          className="w-6 h-6 text-white"
           fill="none" 
           strokeLinecap="round" 
           strokeLinejoin="round" 
