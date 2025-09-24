@@ -9,13 +9,13 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
               <span className="text-sm font-light tracking-[0.15em] uppercase">THE</span>
-              <span className="font-serif italic">Polissi</span>
+              <span className="font-caslon font-normal text-2xl italic normal-case tracking-normal">Polissi</span>
               <span className="text-sm font-light tracking-[0.15em] uppercase">LAB</span>
             </h3>
             <p className="text-muted-foreground mb-4 flex flex-wrap items-center gap-1">
-              Advancing molecular science through innovative research and collaboration at 
+              Advancing molecular science through innovative research and collaboration at
               <span className="text-sm font-light tracking-[0.1em] uppercase">THE</span>
-              <span className="font-serif italic">Polissi</span>
+              <span className="font-caslon font-normal text-xl italic normal-case tracking-normal">Polissi</span>
               <span className="text-sm font-light tracking-[0.1em] uppercase">LAB.</span>
             </p>
             <div className="flex space-x-4">
@@ -59,10 +59,10 @@ const Footer = () => {
               Research Areas
             </h4>
             <ul className="space-y-2">
-              <li><span className="text-muted-foreground">Protein Structure Analysis</span></li>
-              <li><span className="text-muted-foreground">Membrane Transport</span></li>
-              <li><span className="text-muted-foreground">Outer Membrane Assembly</span></li>
-              <li><span className="text-muted-foreground">Molecular Dynamics</span></li>
+              <li><span className="text-muted-foreground">LPS Biogenesis</span></li>
+              <li><span className="text-muted-foreground">Peptidoglycan Biosynthesis</span></li>
+              <li><span className="text-muted-foreground">Natural Product Screening</span></li>
+              <li><span className="text-muted-foreground">Antimicrobial Discovery</span></li>
             </ul>
           </div>
         </div>
@@ -70,7 +70,7 @@ const Footer = () => {
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground flex items-center justify-center gap-2">
             <span className="text-sm tracking-[0.1em] uppercase">© {currentYear} THE</span>
-            <span className="font-serif italic">Polissi</span>
+            <span className="font-caslon font-normal text-lg italic normal-case tracking-normal">Polissi</span>
             <span className="text-sm tracking-[0.1em] uppercase">LAB. ALL RIGHTS RESERVED.</span>
           </p>
         </div>

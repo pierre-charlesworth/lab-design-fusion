@@ -1,28 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   return (
     <section id="contact" className="py-24 px-4 bg-secondary/20">
@@ -55,7 +32,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-foreground font-medium">Location</p>
-                      <p className="text-muted-foreground">Research Building, University Campus<br />City, State 12345</p>
+                      <p className="text-muted-foreground">Via Giuseppe Balzaretti, 9<br />20133 Milan MI</p>
                     </div>
                   </div>
 
@@ -99,77 +76,21 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Google Maps Embed */}
           <div className="animate-scale-in" style={{ animationDelay: "0.2s" }}>
-            <form onSubmit={handleSubmit} className="bg-card border border-border rounded-lg p-6 space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Name
-                  </label>
-                  <Input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email
-                  </label>
-                  <Input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                  Subject
-                </label>
-                <Input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="w-full"
-                />
-              </div>
-
-              <Button 
-                type="submit"
-                className="btn-primary w-full"
-              >
-                Send Message
-              </Button>
-            </form>
+            <div className="bg-card border border-border rounded-lg overflow-hidden h-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.829!2d9.2277!3d45.4924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c15b8b5c6d39%3A0x5d4f5c5a1f8b5c5a!2sVia%20Giuseppe%20Balzaretti%2C%209%2C%2020133%20Milano%20MI%2C%20Italy!5e0!3m2!1sen!2sus!4v1234567890"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full min-h-[400px]"
+                title="Lab Location"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>

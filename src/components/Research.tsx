@@ -1,26 +1,23 @@
-import proteinImage from "@/assets/protein-structure.jpg";
-import membraneImage from "@/assets/membrane-transport.jpg";
-import outerMembraneImage from "@/assets/outer-membrane.jpg";
+import lpsImage from "@/assets/protein-structure.jpg";
+import peptidoglycanImage from "@/assets/membrane-transport.jpg";
+import screeningImage from "@/assets/outer-membrane.jpg";
 
 const Research = () => {
   const researchAreas = [
     {
-      title: "Protein Structure Analysis",
-      description: "Advanced computational and experimental approaches to understand protein folding, dynamics, and function at the molecular level.",
-      image: proteinImage,
-      technologies: ["X-ray Crystallography", "NMR Spectroscopy", "Cryo-EM", "Molecular Dynamics"],
+      title: "LPS Biogenesis",
+      description: "Understanding the complex biosynthetic pathways and transport mechanisms involved in lipopolysaccharide assembly and delivery to the outer membrane of gram-negative bacteria.",
+      image: lpsImage,
     },
     {
-      title: "Membrane Transport Mechanisms", 
-      description: "Investigation of lipopolysaccharide transport systems and membrane protein assembly in bacterial cells.",
-      image: membraneImage,
-      technologies: ["Live Cell Imaging", "Patch Clamp", "Fluorescence Microscopy", "Biochemical Assays"],
+      title: "Peptidoglycan Biosynthesis and Remodeling",
+      description: "Investigating the enzymatic machinery and regulatory networks controlling peptidoglycan synthesis, modification, and recycling during bacterial growth and division.",
+      image: peptidoglycanImage,
     },
     {
-      title: "Outer Membrane Assembly",
-      description: "Elucidating the complex machinery responsible for outer membrane biogenesis in gram-negative bacteria.",
-      image: outerMembraneImage,
-      technologies: ["Electron Microscopy", "Cross-linking", "Proteomics", "Genetic Analysis"],
+      title: "Natural Product Screening",
+      description: "Systematic discovery and characterization of bioactive natural compounds with antimicrobial properties, focusing on novel mechanisms of action against bacterial pathogens.",
+      image: screeningImage,
     },
   ];
 
@@ -33,8 +30,8 @@ const Research = () => {
             research <span className="text-muted-foreground">areas</span>
           </h2>
           <p className="text-display text-muted-foreground max-w-3xl mx-auto">
-            We focus on fundamental questions in molecular biology, combining cutting-edge 
-            experimental techniques with computational approaches to understand life at the molecular scale.
+            We focus on bacterial cell envelope biogenesis and antimicrobial discovery, combining
+            biochemical, genetic, and screening approaches to understand and target essential cellular processes.
           </p>
         </div>
 
@@ -58,23 +55,9 @@ const Research = () => {
                 <h3 className="text-xl font-semibold text-foreground mb-3">
                   {area.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {area.description}
                 </p>
-                
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-accent">Key Technologies:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {area.technologies.map((tech) => (
-                      <span 
-                        key={tech}
-                        className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded-md"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           ))}
@@ -83,14 +66,22 @@ const Research = () => {
         {/* Call to Action */}
         <div className="text-center mt-16 animate-fade-in">
           <p className="text-display text-muted-foreground mb-6">
-            Interested in collaborating or learning more about our research?
+            Interested in learning more about our detailed research programs?
           </p>
-          <a 
-            href="#contact"
-            className="btn-primary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
-          >
-            Get In Touch
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a
+              href="/research"
+              className="btn-primary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
+            >
+              Explore Research Details
+            </a>
+            <a
+              href="#contact"
+              className="btn-secondary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
+            >
+              Get In Touch
+            </a>
+          </div>
         </div>
       </div>
     </section>

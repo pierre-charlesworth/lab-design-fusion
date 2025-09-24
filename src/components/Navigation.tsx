@@ -5,21 +5,24 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: "Research", href: "#research" },
-    { name: "People", href: "#people" },
+    { name: "Research", href: "/research" },
+    { name: "People", href: "/people" },
     { name: "Publications", href: "#publications" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Lab Name */}
-          <div className="text-sm font-light text-foreground tracking-[0.2em] uppercase flex items-center gap-2">
+          <a
+            href="/"
+            className="text-sm font-light text-foreground tracking-[0.2em] uppercase flex items-center gap-2 hover:text-accent smooth-transition"
+          >
             <span className="font-caslon font-normal text-2xl italic normal-case tracking-normal">Polissi</span>
             <span>LAB</span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
