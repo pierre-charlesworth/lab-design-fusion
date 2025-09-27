@@ -1,25 +1,44 @@
+import { useState, useEffect } from "react";
+import { client, queries, urlFor, type ResearchArea } from "@/lib/sanity";
 import lpsImage from "@/assets/protein-structure.jpg";
 import peptidoglycanImage from "@/assets/membrane-transport.jpg";
 import screeningImage from "@/assets/outer-membrane.jpg";
 
+// Fallback images mapping
+const getFallbackImage = (title: string) => {
+  const titleLower = title.toLowerCase();
+  if (titleLower.includes('lps') || titleLower.includes('lipopolysaccharide')) return lpsImage;
+  if (titleLower.includes('peptidoglycan')) return peptidoglycanImage;
+  if (titleLower.includes('screening') || titleLower.includes('natural')) return screeningImage;
+  return lpsImage; // default
+};
+
 const Research = () => {
-  const researchAreas = [
-    {
-      title: "LPS Biogenesis",
-      description: "Understanding the complex biosynthetic pathways and transport mechanisms involved in lipopolysaccharide assembly and delivery to the outer membrane of gram-negative bacteria.",
-      image: lpsImage,
-    },
-    {
-      title: "Peptidoglycan Biosynthesis and Remodeling",
-      description: "Investigating the enzymatic machinery and regulatory networks controlling peptidoglycan synthesis, modification, and recycling during bacterial growth and division.",
-      image: peptidoglycanImage,
-    },
-    {
-      title: "Natural Product Screening",
-      description: "Systematic discovery and characterization of bioactive natural compounds with antimicrobial properties, focusing on novel mechanisms of action against bacterial pathogens.",
-      image: screeningImage,
-    },
-  ];
+  const [researchAreas, setResearchAreas] = useState<ResearchArea[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [debugInfo, setDebugInfo] = useState<string>('');
+
+  useEffect(() => {
+    const fetchResearchAreas = async () => {
+      try {
+        setLoading(true);
+        setDebugInfo(`Client config: projectId=${client.config().projectId}, dataset=${client.config().dataset}`);
+        const data = await client.fetch<ResearchArea[]>(queries.researchAreas);
+        setResearchAreas(data);
+        setDebugInfo(prev => prev + ` | Fetched ${data.length} research areas`);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching research areas:', err);
+        setError(`Failed to load research areas: ${err}`);
+        setDebugInfo(prev => prev + ` | Error: ${err}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResearchAreas();
+  }, []);
 
   return (
     <section id="research" className="py-24 px-4 bg-background">
@@ -33,35 +52,57 @@ const Research = () => {
             We focus on bacterial cell envelope biogenesis and antimicrobial discovery, combining
             biochemical, genetic, and screening approaches to understand and target essential cellular processes.
           </p>
+          {/* Debug info */}
+          <div className="text-xs text-red-500 mt-4 p-2 bg-red-50 rounded">
+            DEBUG v2: {debugInfo} | Areas: {researchAreas.length} | Loading: {loading.toString()} | Error: {error || 'none'}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {researchAreas.map((area, index) => (
-            <div 
-              key={area.title}
-              className="research-card bg-card border border-border rounded-lg overflow-hidden animate-scale-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={area.image} 
-                  alt={area.title}
-                  className="w-full h-full object-cover smooth-transition hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60"></div>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {area.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {area.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-12">
+            <div className="text-muted-foreground">Loading research areas...</div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="flex justify-center items-center py-12">
+            <div className="text-red-500">{error}</div>
+          </div>
+        )}
+
+        {/* Research Areas Grid */}
+        {!loading && !error && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {researchAreas.map((area, index) => (
+              <a
+                href={`/research#research-areas`}
+                key={area._id}
+                className="research-card bg-card border border-border rounded-lg overflow-hidden animate-scale-in hover:shadow-lg hover:border-accent smooth-transition cursor-pointer group"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={area.image ? urlFor(area.image).width(400).height(256).url() : getFallbackImage(area.title)}
+                    alt={area.title}
+                    className="w-full h-full object-cover smooth-transition group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60"></div>
+                </div>
+
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-accent smooth-transition">
+                    {area.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {area.description || 'Explore this research area to learn more about our work.'}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="text-center mt-16 animate-fade-in">
