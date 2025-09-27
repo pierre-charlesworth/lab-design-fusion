@@ -17,17 +17,15 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     commonjsOptions: {
+      transformMixedEsModules: true,
       include: [/@sanity\/.*/, /node_modules/],
-    },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          sanity: ['@sanity/client', '@sanity/image-url'],
-        },
-      },
     },
   },
   optimizeDeps: {
     include: ['@sanity/client', '@sanity/image-url'],
+    force: true,
+  },
+  ssr: {
+    noExternal: ['@sanity/client', '@sanity/image-url'],
   },
 }));
