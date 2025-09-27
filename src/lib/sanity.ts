@@ -11,9 +11,10 @@ export const client = createClient({
           import.meta.env.NEXT_PUBLIC_SANITY_DATASET ||
           import.meta.env.SANITY_API_DATASET ||
           'production',
-  useCdn: false, // Disable CDN to avoid CORS issues in development
-  apiVersion: '2024-01-01', // API version
+  useCdn: true, // Enable CDN for production
+  apiVersion: '2023-05-03', // Use stable API version
   token: undefined, // No token needed for read-only access
+  perspective: 'published', // Only fetch published content
 })
 
 // Set up image URL builder

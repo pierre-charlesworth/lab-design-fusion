@@ -53,8 +53,15 @@ const Research = () => {
             biochemical, genetic, and screening approaches to understand and target essential cellular processes.
           </p>
           {/* Debug info */}
-          <div className="text-xs text-red-500 mt-4 p-2 bg-red-50 rounded">
-            DEBUG v2: {debugInfo} | Areas: {researchAreas.length} | Loading: {loading.toString()} | Error: {error || 'none'}
+          <div className="text-xs text-red-500 mt-4 p-2 bg-red-50 rounded max-w-4xl mx-auto">
+            <div><strong>DEBUG v3:</strong></div>
+            <div>Config: {debugInfo}</div>
+            <div>Areas: {researchAreas.length} | Loading: {loading.toString()}</div>
+            <div>Domain: {window.location.hostname}</div>
+            {error && <div className="text-red-700 font-bold">Error: {error}</div>}
+            <div className="mt-2 text-blue-600">
+              ⚠️ If you see request errors, add <strong>{window.location.origin}</strong> to CORS origins in Sanity manage console
+            </div>
           </div>
         </div>
 
