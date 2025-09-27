@@ -16,8 +16,15 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    commonjsOptions: {
+      include: [/@sanity\/.*/, /node_modules/],
+    },
     rollupOptions: {
-      external: [],
+      output: {
+        manualChunks: {
+          sanity: ['@sanity/client', '@sanity/image-url'],
+        },
+      },
     },
   },
   optimizeDeps: {
