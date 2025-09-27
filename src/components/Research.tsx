@@ -17,21 +17,17 @@ const Research = () => {
   const [researchAreas, setResearchAreas] = useState<ResearchArea[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [debugInfo, setDebugInfo] = useState<string>('');
 
   useEffect(() => {
     const fetchResearchAreas = async () => {
       try {
         setLoading(true);
-        setDebugInfo(`Client config: projectId=${client.config().projectId}, dataset=${client.config().dataset}`);
         const data = await client.fetch<ResearchArea[]>(queries.researchAreas);
         setResearchAreas(data);
-        setDebugInfo(prev => prev + ` | Fetched ${data.length} research areas`);
         setError(null);
       } catch (err) {
         console.error('Error fetching research areas:', err);
-        setError(`Failed to load research areas: ${err}`);
-        setDebugInfo(prev => prev + ` | Error: ${err}`);
+        setError('Failed to load research areas');
       } finally {
         setLoading(false);
       }
@@ -52,17 +48,6 @@ const Research = () => {
             We focus on bacterial cell envelope biogenesis and antimicrobial discovery, combining
             biochemical, genetic, and screening approaches to understand and target essential cellular processes.
           </p>
-          {/* Debug info */}
-          <div className="text-xs text-red-500 mt-4 p-2 bg-red-50 rounded max-w-4xl mx-auto">
-            <div><strong>DEBUG v3:</strong></div>
-            <div>Config: {debugInfo}</div>
-            <div>Areas: {researchAreas.length} | Loading: {loading.toString()}</div>
-            <div>Domain: {window.location.hostname}</div>
-            {error && <div className="text-red-700 font-bold">Error: {error}</div>}
-            <div className="mt-2 text-blue-600">
-              ⚠️ If you see request errors, add <strong>{window.location.origin}</strong> to CORS origins in Sanity manage console
-            </div>
-          </div>
         </div>
 
         {/* Loading State */}
