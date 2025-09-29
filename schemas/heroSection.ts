@@ -28,6 +28,14 @@ export default defineType({
       description: 'Hero background image',
     }),
     defineField({
+      name: 'imageDarkness',
+      title: 'Image Darkness Overlay',
+      type: 'number',
+      description: 'Controls the darkness of the overlay on the background image (0 = no overlay, 100 = very dark)',
+      validation: (Rule) => Rule.min(0).max(100),
+      initialValue: 60,
+    }),
+    defineField({
       name: 'tagline',
       title: 'Top Tagline',
       type: 'string',

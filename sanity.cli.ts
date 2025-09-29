@@ -14,6 +14,9 @@ export default defineCliConfig({
         include: [/@sanity\/.*/, /node_modules/],
       },
       rollupOptions: {
+        input: {
+          main: './index.html'
+        },
         output: {
           manualChunks: {
             sanity: ['@sanity/client', '@sanity/image-url'],

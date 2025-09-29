@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { client, queries, urlFor, type HeroSection } from "@/lib/sanity";
-import heroImage from "@/assets/hero-microscopy.jpg";
 
 const ResearchHero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -42,20 +41,26 @@ const ResearchHero = () => {
   };
 
   const displayData = heroData || fallbackData;
-  const backgroundImageUrl = displayData.backgroundImage ? urlFor(displayData.backgroundImage).width(1920).height(1080).url() : heroImage;
+  const backgroundImageUrl = displayData.backgroundImage ? urlFor(displayData.backgroundImage).width(1920).height(1080).url() : null;
+  const imageDarkness = displayData.imageDarkness ?? 60; // Default to 60% if not set
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${backgroundImageUrl})`,
-          transform: `translateY(${scrollY * 0.5}px)`
-        }}
-      >
-        <div className="absolute inset-0 hero-gradient opacity-70"></div>
-      </div>
+      {backgroundImageUrl && (
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${backgroundImageUrl})`,
+            transform: `translateY(${scrollY * 0.5}px)`
+          }}
+        >
+          <div
+            className="absolute inset-0 hero-gradient"
+            style={{ opacity: imageDarkness / 100 }}
+          ></div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">

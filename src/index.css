@@ -139,6 +139,11 @@ All colors MUST be HSL for maximum design flexibility.
     @apply smooth-transition hover:scale-105 hover:bg-muted/50;
   }
 
+  /* Hero gradient overlay */
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
   /* Monochromatic button styles */
   .btn-primary {
     @apply bg-foreground text-background hover:bg-muted-foreground smooth-transition;

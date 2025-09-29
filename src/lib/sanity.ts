@@ -117,6 +117,7 @@ export const queries = {
     _id,
     page,
     backgroundImage,
+    imageDarkness,
     tagline,
     title,
     subtitle,
@@ -245,6 +246,7 @@ export interface HeroSection {
   _id: string
   page: 'main' | 'research' | 'people'
   backgroundImage?: any
+  imageDarkness?: number
   tagline?: string
   title?: {
     line1?: string
