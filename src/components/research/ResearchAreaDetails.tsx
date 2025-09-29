@@ -135,7 +135,7 @@ const ResearchAreaDetails = () => {
                       alt={area.title}
                       className="w-full h-80 lg:h-96 object-cover smooth-transition hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-transparent"></div>
                     <div className="absolute bottom-6 left-6 right-6">
                       <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">{area.title}</h3>
                       {area.subtitle && (

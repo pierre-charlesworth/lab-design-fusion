@@ -80,7 +80,8 @@ const Research = () => {
                     alt={area.title}
                     className="w-full h-full object-cover smooth-transition group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60"></div>
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-transparent"></div>
                 </div>
 
                 <div className="p-6">
