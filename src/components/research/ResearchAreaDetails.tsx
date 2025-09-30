@@ -43,6 +43,31 @@ const ResearchAreaDetails = () => {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedFigure, setSelectedFigure] = useState<{
+    image: any;
+    title: string;
+    caption?: string;
+    altText?: string;
+  } | null>(null);
+
+  // Handle keyboard events for modal
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && selectedFigure) {
+        setSelectedFigure(null);
+      }
+    };
+
+    if (selectedFigure) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedFigure]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -150,7 +175,7 @@ const ResearchAreaDetails = () => {
                   <Tabs defaultValue="overview" className="w-full">
                     <TabsList className="grid w-full grid-cols-4 mb-8">
                       <TabsTrigger value="overview" className="text-xs">Overview</TabsTrigger>
-                      <TabsTrigger value="methods" className="text-xs">Methods</TabsTrigger>
+                      <TabsTrigger value="figures" className="text-xs">Figures</TabsTrigger>
                       <TabsTrigger value="projects" className="text-xs">Projects</TabsTrigger>
                       <TabsTrigger value="publications" className="text-xs">Papers</TabsTrigger>
                     </TabsList>
@@ -161,17 +186,35 @@ const ResearchAreaDetails = () => {
                       </p>
                     </TabsContent>
 
-                    <TabsContent value="methods" className="space-y-4">
-                      <div className="grid grid-cols-1 gap-3">
-                        {area.methods && area.methods.length > 0 ? (
-                          area.methods.map((method, idx) => (
-                            <div key={idx} className="flex items-center space-x-3">
-                              <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                              <span className="text-muted-foreground text-sm">{method}</span>
+                    <TabsContent value="figures" className="space-y-4">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {area.figures && area.figures.length > 0 ? (
+                          area.figures.map((figure, idx) => (
+                            <div
+                              key={idx}
+                              className="cursor-pointer group"
+                              onClick={() => setSelectedFigure(figure)}
+                            >
+                              <div className="relative overflow-hidden rounded-lg bg-card border border-border">
+                                <img
+                                  src={urlFor(figure.image).width(300).height(200).url()}
+                                  alt={figure.altText || figure.title}
+                                  className="w-full h-32 object-cover smooth-transition group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 smooth-transition"></div>
+                                <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 smooth-transition">
+                                  <p className="text-white text-xs font-medium truncate">{figure.title}</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground mt-2 text-center truncate">
+                                {figure.title}
+                              </p>
                             </div>
                           ))
                         ) : (
-                          <p className="text-muted-foreground text-sm">No methods listed.</p>
+                          <div className="col-span-full text-center py-8">
+                            <p className="text-muted-foreground text-sm">No figures available.</p>
+                          </div>
                         )}
                       </div>
                     </TabsContent>
@@ -222,6 +265,49 @@ const ResearchAreaDetails = () => {
           })}
         </div>
       </div>
+
+      {/* Figure Modal */}
+      {selectedFigure && (
+        <div
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedFigure(null)}
+        >
+          <div
+            className="relative max-w-4xl max-h-[90vh] bg-background rounded-lg overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedFigure(null)}
+              className="absolute top-4 right-4 z-10 bg-background/80 hover:bg-background text-foreground rounded-full p-2 smooth-transition"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col lg:flex-row">
+              <div className="lg:w-2/3">
+                <img
+                  src={urlFor(selectedFigure.image).width(800).height(600).url()}
+                  alt={selectedFigure.altText || selectedFigure.title}
+                  className="w-full h-auto max-h-[60vh] lg:max-h-[80vh] object-contain"
+                />
+              </div>
+
+              <div className="lg:w-1/3 p-6 lg:max-h-[80vh] lg:overflow-y-auto">
+                <h3 className="text-xl font-semibold text-foreground mb-4">
+                  {selectedFigure.title}
+                </h3>
+                {selectedFigure.caption && (
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    {selectedFigure.caption}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

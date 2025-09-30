@@ -57,6 +57,54 @@ export default defineType({
       description: 'Key research methods and techniques used',
     }),
     defineField({
+      name: 'figures',
+      title: 'Research Figures',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'image',
+              title: 'Figure Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'title',
+              title: 'Figure Title',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              title: 'Figure Caption/Legend',
+              type: 'text',
+              rows: 3,
+              description: 'Detailed caption or legend explaining the figure',
+            },
+            {
+              name: 'altText',
+              title: 'Alt Text',
+              type: 'string',
+              description: 'Alternative text for accessibility',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'caption',
+              media: 'image',
+            },
+          },
+        },
+      ],
+      description: 'Research figures and images with captions',
+    }),
+    defineField({
       name: 'currentProjects',
       title: 'Current Projects',
       type: 'array',

@@ -94,6 +94,12 @@ export const queries = {
     detailedDescription,
     image,
     methods,
+    figures[]{
+      image,
+      title,
+      caption,
+      altText
+    },
     currentProjects,
     keyFindings,
     order
@@ -211,6 +217,12 @@ export interface ResearchArea {
   detailedDescription?: string
   image?: any
   methods?: string[]
+  figures?: Array<{
+    image: any
+    title: string
+    caption?: string
+    altText?: string
+  }>
   currentProjects?: Array<{
     title: string
     description: string
