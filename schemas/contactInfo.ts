@@ -59,7 +59,14 @@ export default defineType({
       name: 'googleMapsEmbed',
       title: 'Google Maps Embed URL',
       type: 'url',
-      description: 'Full Google Maps embed URL',
+      description: 'IMPORTANT: Use the embed URL format starting with "https://www.google.com/maps/embed". Do NOT use maps.app.goo.gl or other short URLs. To get the correct URL: 1) Go to Google Maps, 2) Search for your location, 3) Click "Share" button, 4) Click "Embed a map" tab, 5) Copy the src URL from the iframe code.',
+      validation: (Rule) => Rule.custom((value) => {
+        if (!value) return true; // Allow empty values
+        if (typeof value === 'string' && value.startsWith('https://www.google.com/maps/embed')) {
+          return true;
+        }
+        return 'Please use a proper Google Maps embed URL starting with "https://www.google.com/maps/embed". Short URLs like maps.app.goo.gl cannot be embedded due to security restrictions.';
+      }),
     }),
     defineField({
       name: 'researchOpportunities',

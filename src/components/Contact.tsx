@@ -49,7 +49,25 @@ const Contact = () => {
     }
   };
 
-  const displayData = contactInfo || fallbackData;
+  // Helper function to validate Google Maps embed URL
+  const getValidEmbedUrl = (url: string | undefined): string | undefined => {
+    if (!url) return undefined;
+
+    // Check if it's a valid embed URL
+    if (url.startsWith('https://www.google.com/maps/embed')) {
+      return url;
+    }
+
+    // If it's an invalid URL (like maps.app.goo.gl), return fallback
+    console.warn('Invalid Google Maps embed URL detected:', url, 'Using fallback URL instead.');
+    return fallbackData.googleMapsEmbed;
+  };
+
+  const displayData = contactInfo ? {
+    ...contactInfo,
+    googleMapsEmbed: getValidEmbedUrl(contactInfo.googleMapsEmbed)
+  } : fallbackData;
+
   console.log('DEBUG Contact: Using data source:', contactInfo ? 'Sanity' : 'Fallback', displayData._id);
 
   return (
