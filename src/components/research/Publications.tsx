@@ -27,7 +27,6 @@ const generateAuthorString = (publication: Publication): string => {
 };
 
 const Publications = () => {
-  const [selectedArea, setSelectedArea] = useState("all");
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +36,8 @@ const Publications = () => {
       try {
         setLoading(true);
         const data = await client.fetch<Publication[]>(queries.publications);
-        setPublications(data);
+        // Get only the 3 most recent publications
+        setPublications(data.slice(0, 3));
         setError(null);
       } catch (err) {
         console.error('Error fetching publications:', err);
@@ -50,27 +50,16 @@ const Publications = () => {
     fetchPublications();
   }, []);
 
-  const filteredPublications = selectedArea === "all"
-    ? publications
-    : publications.filter(pub => pub.area === selectedArea);
-
-  const areas = [
-    { id: "all", label: "All Areas" },
-    { id: "lps", label: "LPS Biogenesis" },
-    { id: "peptidoglycan", label: "Peptidoglycan" },
-    { id: "screening", label: "Natural Products" }
-  ];
-
   return (
     <section id="publications" className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16 animate-fade-in">
           <p className="text-caption text-muted-foreground mb-4">scientific contributions</p>
           <h2 className="text-section text-foreground mb-8">
-            recent <span className="text-muted-foreground">publications</span>
+            latest <span className="text-muted-foreground">publications</span>
           </h2>
           <p className="text-display text-muted-foreground max-w-3xl mx-auto">
-            Explore our latest research contributions to the fields of bacterial cell biology,
+            Highlights from our recent research contributions to bacterial cell biology,
             antimicrobial discovery, and molecular mechanisms of cell envelope biogenesis.
           </p>
         </div>
@@ -92,26 +81,9 @@ const Publications = () => {
         {/* Main Content */}
         {!loading && (
           <>
-            {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {areas.map((area) => (
-            <button
-              key={area.id}
-              onClick={() => setSelectedArea(area.id)}
-              className={`px-6 py-3 rounded-lg font-medium smooth-transition ${
-                selectedArea === area.id
-                  ? 'bg-foreground text-background'
-                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-foreground'
-              }`}
-            >
-              {area.label}
-            </button>
-          ))}
-        </div>
-
         {/* Publications List */}
         <div className="space-y-8">
-          {filteredPublications.map((pub, index) => (
+          {publications.map((pub, index) => (
             <div
               key={pub._id}
               className="bg-card border border-border rounded-lg p-8 animate-fade-in hover:bg-muted/20 smooth-transition"
@@ -177,14 +149,17 @@ const Publications = () => {
           ))}
         </div>
 
-            {/* Load More / View All */}
+            {/* View All Publications */}
             <div className="text-center mt-12">
-              <button className="btn-secondary inline-flex items-center px-8 py-3 font-semibold rounded-lg">
+              <a
+                href="/publications"
+                className="btn-secondary inline-flex items-center px-8 py-3 font-semibold rounded-lg"
+              >
                 View All Publications
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-              </button>
+              </a>
             </div>
           </>
         )}

@@ -47,7 +47,7 @@ const PeopleHero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax - Group Photo */}
-      {backgroundImageUrl && (
+      {backgroundImageUrl && !loading && (
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -62,8 +62,17 @@ const PeopleHero = () => {
         </div>
       )}
 
+      {/* Loading State */}
+      {loading && (
+        <div className="relative z-10 flex flex-col items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mb-4"></div>
+          <p className="text-white text-sm">Loading...</p>
+        </div>
+      )}
+
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+      {!loading && (
+        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
         <div className="animate-fade-in">
           {displayData.tagline && (
             <p className="text-statement text-white mb-8">
@@ -114,10 +123,11 @@ const PeopleHero = () => {
             )}
           </div>
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Scroll Indicator */}
-      {displayData.showScrollIndicator && (
+      {!loading && displayData.showScrollIndicator && (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <svg
             className="w-6 h-6 text-white"

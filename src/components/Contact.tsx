@@ -123,10 +123,21 @@ const Contact = () => {
                     <div>
                       <p className="text-foreground font-medium">Location</p>
                       <p className="text-muted-foreground">
-                        {displayData.address?.street && (
+                        {displayData.address && (
                           <>
-                            {displayData.address.street}<br />
-                            {displayData.address.city}
+                            {displayData.address.street && (
+                              <>
+                                {displayData.address.street}<br />
+                              </>
+                            )}
+                            {(displayData.address.city || displayData.address.postalCode) && (
+                              <>
+                                {displayData.address.postalCode && `${displayData.address.postalCode} `}
+                                {displayData.address.city}
+                                <br />
+                              </>
+                            )}
+                            {displayData.address.country && displayData.address.country}
                           </>
                         )}
                       </p>
@@ -143,7 +154,12 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-foreground font-medium">Email</p>
-                        <p className="text-muted-foreground">{displayData.email}</p>
+                        <a
+                          href={`mailto:${displayData.email}`}
+                          className="text-muted-foreground hover:text-accent smooth-transition"
+                        >
+                          {displayData.email}
+                        </a>
                       </div>
                     </div>
                   )}
