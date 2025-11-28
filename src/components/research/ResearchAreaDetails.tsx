@@ -94,10 +94,11 @@ const ResearchAreaDetails = () => {
   // Filter publications by area
   const getPublicationsByArea = (areaSlug: string): Publication[] => {
     // Map slug to area values used in publications
+    // Map slug to area values used in publications
     const areaMapping = {
-      'lps-biogenesis': 'lps',
-      'peptidoglycan-biosynthesis': 'peptidoglycan',
-      'natural-product-screening': 'screening'
+      'lps-biogenesis-and-transport': 'lps',
+      'peptidoglycan-remodeling-under-outer-membrane-stress': 'peptidoglycan',
+      'antimicrobial-discovery': 'screening'
     };
 
     const areaValue = areaMapping[areaSlug as keyof typeof areaMapping] || areaSlug;
@@ -180,84 +181,100 @@ const ResearchAreaDetails = () => {
                       <TabsTrigger value="publications" className="text-xs">Papers</TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="overview" className="space-y-4">
-                      <p className="text-muted-foreground leading-relaxed text-justify">
-                        {area.detailedDescription || area.description || 'No description available.'}
-                      </p>
-                    </TabsContent>
+                    <div className="h-80 lg:h-96 overflow-y-auto pr-2 custom-scrollbar">
+                      <TabsContent value="overview" className="space-y-4 mt-0">
+                        <p className="text-muted-foreground leading-relaxed text-justify">
+                          {area.detailedDescription || area.description || 'No description available.'}
+                        </p>
+                      </TabsContent>
 
-                    <TabsContent value="figures" className="space-y-4">
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {area.figures && area.figures.length > 0 ? (
-                          area.figures.map((figure, idx) => (
-                            <div
-                              key={idx}
-                              className="cursor-pointer group"
-                              onClick={() => setSelectedFigure(figure)}
-                            >
-                              <div className="relative overflow-hidden rounded-lg bg-card border border-border">
-                                <img
-                                  src={urlFor(figure.image).width(300).height(200).url()}
-                                  alt={figure.altText || figure.title}
-                                  className="w-full h-32 object-cover smooth-transition group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 smooth-transition"></div>
-                                <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 smooth-transition">
-                                  <p className="text-white text-xs font-medium truncate">{figure.title}</p>
+                      <TabsContent value="figures" className="space-y-4 mt-0">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                          {area.figures && area.figures.length > 0 ? (
+                            area.figures.map((figure, idx) => (
+                              <div
+                                key={idx}
+                                className="cursor-pointer group"
+                                onClick={() => setSelectedFigure(figure)}
+                              >
+                                <div className="relative overflow-hidden rounded-lg bg-card border border-border">
+                                  <img
+                                    src={urlFor(figure.image).width(300).height(200).url()}
+                                    alt={figure.altText || figure.title}
+                                    className="w-full h-32 object-cover smooth-transition group-hover:scale-105"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 smooth-transition"></div>
+                                  <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 smooth-transition">
+                                    <p className="text-white text-xs font-medium truncate">{figure.title}</p>
+                                  </div>
+                                </div>
+                                <p className="text-sm text-muted-foreground mt-2 text-center truncate">
+                                  {figure.title}
+                                </p>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="col-span-full text-center py-8">
+                              <p className="text-muted-foreground text-sm">No figures available.</p>
+                            </div>
+                          )}
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="projects" className="space-y-4 mt-0">
+                        <div className="space-y-4">
+                          {area.currentProjects && area.currentProjects.length > 0 ? (
+                            area.currentProjects.map((project, idx) => (
+                              <div key={idx} className="border border-border rounded-lg p-4">
+                                <div className="flex items-center justify-between mb-2">
+                                  <h4 className="font-semibold text-foreground">{project.title}</h4>
+                                  <span className={`px-2 py-1 rounded-full text-xs ${project.status === 'Active' ? 'bg-green-500/20 text-green-300' :
+                                      project.status === 'Completed' ? 'bg-blue-500/20 text-blue-300' :
+                                        'bg-yellow-500/20 text-yellow-300'
+                                    }`}>
+                                    {project.status}
+                                  </span>
+                                </div>
+                                <p className="text-muted-foreground text-sm">{project.description}</p>
+                              </div>
+                            ))
+                          ) : (
+                            <p className="text-muted-foreground text-sm">No current projects listed.</p>
+                          )}
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="publications" className="space-y-4 mt-0">
+                        <div className="space-y-4">
+                          {areaPublications.length > 0 ? (
+                            areaPublications.map((pub, idx) => (
+                              <div key={pub._id} className="border border-border rounded-lg p-4">
+                                <h4 className="font-serif italic text-foreground mb-2">{pub.title}</h4>
+                                <p className="text-muted-foreground text-sm mb-1">{generateAuthorString(pub)}</p>
+                                <div className="flex justify-between items-center mt-2">
+                                  <p className="text-accent text-sm font-medium">{pub.journal} ({pub.year})</p>
+                                  {pub.doi && (
+                                    <a
+                                      href={`https://doi.org/${pub.doi}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+                                    >
+                                      DOI
+                                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                      </svg>
+                                    </a>
+                                  )}
                                 </div>
                               </div>
-                              <p className="text-sm text-muted-foreground mt-2 text-center truncate">
-                                {figure.title}
-                              </p>
-                            </div>
-                          ))
-                        ) : (
-                          <div className="col-span-full text-center py-8">
-                            <p className="text-muted-foreground text-sm">No figures available.</p>
-                          </div>
-                        )}
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="projects" className="space-y-4">
-                      <div className="space-y-4">
-                        {area.currentProjects && area.currentProjects.length > 0 ? (
-                          area.currentProjects.map((project, idx) => (
-                            <div key={idx} className="border border-border rounded-lg p-4">
-                              <div className="flex items-center justify-between mb-2">
-                                <h4 className="font-semibold text-foreground">{project.title}</h4>
-                                <span className={`px-2 py-1 rounded-full text-xs ${
-                                  project.status === 'Active' ? 'bg-green-500/20 text-green-300' :
-                                  project.status === 'Completed' ? 'bg-blue-500/20 text-blue-300' :
-                                  'bg-yellow-500/20 text-yellow-300'
-                                }`}>
-                                  {project.status}
-                                </span>
-                              </div>
-                              <p className="text-muted-foreground text-sm">{project.description}</p>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-muted-foreground text-sm">No current projects listed.</p>
-                        )}
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="publications" className="space-y-4">
-                      <div className="space-y-4">
-                        {areaPublications.length > 0 ? (
-                          areaPublications.map((pub, idx) => (
-                            <div key={pub._id} className="border border-border rounded-lg p-4">
-                              <h4 className="font-serif italic text-foreground mb-2">{pub.title}</h4>
-                              <p className="text-muted-foreground text-sm mb-1">{generateAuthorString(pub)}</p>
-                              <p className="text-accent text-sm font-medium">{pub.journal} ({pub.year})</p>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-muted-foreground text-sm">No publications found for this area.</p>
-                        )}
-                      </div>
-                    </TabsContent>
+                            ))
+                          ) : (
+                            <p className="text-muted-foreground text-sm">No publications found for this area.</p>
+                          )}
+                        </div>
+                      </TabsContent>
+                    </div>
                   </Tabs>
                 </div>
               </div>
