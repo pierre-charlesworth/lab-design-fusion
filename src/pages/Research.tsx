@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import ResearchHero from "@/components/research/ResearchHero";
 import ResearchAreaDetails from "@/components/research/ResearchAreaDetails";
 import ResearchMetrics from "@/components/research/ResearchMetrics";
@@ -30,6 +31,10 @@ const Research = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Research"
+        description="Explore our research areas including LPS Biogenesis, Peptidoglycan Biosynthesis, and Antimicrobial Discovery."
+      />
       <Navigation />
       <main>
         <ResearchHero />

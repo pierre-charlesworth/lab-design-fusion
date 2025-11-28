@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import PublicationsHero from "@/components/publications/PublicationsHero";
 import PublicationFilters from "@/components/publications/PublicationFilters";
 import PublicationsList from "@/components/publications/PublicationsList";
@@ -122,6 +123,10 @@ const Publications = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Publications"
+        description="Browse our latest publications and contributions to molecular science research."
+      />
       <Navigation />
       <main>
         <PublicationsHero
