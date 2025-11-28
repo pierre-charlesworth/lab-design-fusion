@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import ResearchHero from "@/components/research/ResearchHero";
 import ResearchAreaDetails from "@/components/research/ResearchAreaDetails";
-import ResearchMetrics from "@/components/research/ResearchMetrics";
 import Publications from "@/components/research/Publications";
 import CollaborationCTA from "@/components/research/CollaborationCTA";
 
@@ -39,7 +38,6 @@ const Research = () => {
       <main>
         <ResearchHero />
         <ResearchAreaDetails />
-        <ResearchMetrics />
         <Publications />
         <CollaborationCTA />
       </main>
